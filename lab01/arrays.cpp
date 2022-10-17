@@ -20,8 +20,10 @@ void alloc_array_fill_34(int size) {
 
 bool alloc_array_2D(int**& array, int sizeX, int sizeY) {
 
-    if (sizeX <= 0 || sizeY <= 0)
+    if (sizeX <= 0 || sizeY <= 0) {
+        std::cout << "Nieprawidłowy rozmiar tablicy." << std::endl;
         return false;
+    }
 
     array = new int*[sizeX];
     for (int i = 0; i < sizeX; i++)
@@ -32,8 +34,10 @@ bool alloc_array_2D(int**& array, int sizeX, int sizeY) {
 
 bool dealloc_array_2D(int**& array, int sizeX) {
 
-    if (sizeX <= 0)
+    if (sizeX <= 0) {
+        std::cout << "Podano nieprawidłowy rozmiar." << std::endl;
         return false;
+    }
 
     for (int i = 0; i < sizeX; i++)
         delete[] array[i];
@@ -46,8 +50,8 @@ bool dealloc_array_2D(int**& array, int sizeX) {
 int main() {
 
     int** array;
-    alloc_array_2D(array, 5, 3);
-    dealloc_array_2D(array, 5);
+    bool canDealloc = alloc_array_2D(array, 5, 3);
+    if (canDealloc) dealloc_array_2D(array, 5);
 
     return 0;
 }
