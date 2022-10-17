@@ -5,11 +5,11 @@ class Table {
 
     private:
 
-        const std::string defaultName = "Tablica";
-        const int defaultarrayLen = 5;
+        const std::string default_name = "Tablica";
+        const int default_array_len = 5;
 
         std::string name;
-        int arrayLen;
+        int array_len;
 
         int *array;
 
@@ -18,9 +18,9 @@ class Table {
 
         Table() {
 
-            name = defaultName;
-            arrayLen = defaultarrayLen;
-            array = new int[arrayLen];
+            name = default_name;
+            array_len = default_array_len;
+            array = new int[array_len];
 
             std::cout << "bezp: '" << name << "'" << std::endl;
         };
@@ -28,8 +28,8 @@ class Table {
         Table(std::string name, int arrayLen) {
 
             this->name = name;
-            this->arrayLen = arrayLen;
-            array = new int[arrayLen];
+            this->array_len = array_len;
+            array = new int[array_len];
 
             std::cout << "param: '" << name << "'" << std::endl;
         };
@@ -37,10 +37,10 @@ class Table {
         Table(const Table &otherTable) {
 
             name = otherTable.name + "_copy";
-            arrayLen = otherTable.arrayLen;
-            array = new int[arrayLen];
+            array_len = otherTable.array_len;
+            array = new int[array_len];
 
-            for (int i = 0; i < arrayLen; i++)
+            for (int i = 0; i < array_len; i++)
                 array[i] = otherTable.array[i];
 
             std::cout << "kopiuj: '" << name << "'" << std::endl;
@@ -62,15 +62,15 @@ class Table {
             this->name = name;
         }
 
-        bool setArrayLen(int arrayLen) {
+        bool setArrayLen(int array_len) {
 
-            if (arrayLen <= 0)
+            if (array_len <= 0)
                 return false;
 
-            this->arrayLen = arrayLen;
-            int *temp = new int[arrayLen];
+            this->array_len = array_len;
+            int *temp = new int[array_len];
 
-            for (int i = 0; i < arrayLen; i++)
+            for (int i = 0; i < array_len; i++)
                 temp[i] = array[i];
             
             delete[] array;
@@ -81,20 +81,20 @@ class Table {
 
         void printTable() {
 
-            for (int i = 0; i < arrayLen; i++)
+            for (int i = 0; i < array_len; i++)
                 std::cout << name << "[" << i << "] = " << array[i] << std::endl;
         }
 };
 
 
-void modTable(Table table, int arrayLen) {
+void modTable(Table table, int array_len) {
 
-    table.setArrayLen(arrayLen);
+    table.setArrayLen(array_len);
 }
 
-void modTable(Table *table, int arrayLen) {
+void modTable(Table *table, int array_len) {
 
-    table->setArrayLen(arrayLen);
+    table->setArrayLen(array_len);
 }
 
 

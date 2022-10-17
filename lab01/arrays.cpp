@@ -1,5 +1,6 @@
 #include <iostream>
 
+
 void alloc_array_fill_34(int size) {
 
     while (size <= 0) {
@@ -7,7 +8,7 @@ void alloc_array_fill_34(int size) {
         return;
     }
 
-    int *array = new int[size];
+    int* array = new int[size];
     for (int i = 0; i < size; i++)
         array[i] = 34;
 
@@ -17,8 +18,7 @@ void alloc_array_fill_34(int size) {
     delete[] array;
 }
 
-
-bool alloc_array_2D(int **array, int sizeX, int sizeY) {
+bool alloc_array_2D(int**& array, int sizeX, int sizeY) {
 
     if (sizeX <= 0 || sizeY <= 0)
         return false;
@@ -30,8 +30,7 @@ bool alloc_array_2D(int **array, int sizeX, int sizeY) {
     return true;
 }
 
-
-bool dealloc_array_2D(int **array, int sizeX) {
+bool dealloc_array_2D(int**& array, int sizeX) {
 
     if (sizeX <= 0)
         return false;
@@ -46,9 +45,7 @@ bool dealloc_array_2D(int **array, int sizeX) {
 
 int main() {
 
-    alloc_array_fill_34(5);
-
-    int **array;
+    int** array;
     alloc_array_2D(array, 5, 3);
     dealloc_array_2D(array, 5);
 
