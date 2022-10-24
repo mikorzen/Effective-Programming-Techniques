@@ -1,7 +1,8 @@
+#include "arrays.hpp"
 #include <iostream>
 
 
-void alloc_array_fill_34(int size) {
+void alloc_array_fill(int size, int filler) {
 
     while (size <= 0) {
         std::cout << "Nieprawidłowy rozmiar tablicy." << std::endl;
@@ -10,7 +11,7 @@ void alloc_array_fill_34(int size) {
 
     int* array = new int[size];
     for (int i = 0; i < size; i++)
-        array[i] = 34;
+        array[i] = filler;
 
     for (int i = 0; i < size; i++)
         std::cout << "array[" << i << "] = " << array[i] << std::endl;
@@ -48,6 +49,8 @@ bool dealloc_array_2D(int*** array, int sizeX) {
 
 
 int main() {
+
+    alloc_array_fill(5, 34);
 
     int** array;
     bool canDealloc = alloc_array_2D(&array, 5, 3);

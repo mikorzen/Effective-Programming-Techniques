@@ -1,4 +1,4 @@
-#include "table.hpp"
+#include "table_mod.hpp"
 #include <iostream>
 #include <string>
 
@@ -33,13 +33,23 @@ Table::Table(const Table &otherTable) {
 
 Table::~Table() {
 
-    delete[] array;
+    if (!shared)
+        delete[] array;
     std::cout << "usuwam: '" << name << "'" << std::endl;
 } 
 
 Table *Table::clone() {
     
     return new Table(*this);
+}
+
+Table *Table::share() {
+
+    Table *table = new Table(name + "_shared", array_len);
+    table->array = array;
+    table->shared = true;
+
+    return table;
 }
 
 void Table::setName(std::string name) {
@@ -70,6 +80,12 @@ void Table::printTable() {
         std::cout << name << "[" << i << "] = " << array[i] << std::endl;
 }
 
+void Table::fillTable(int filler) {
+
+    for (int i = 0; i < array_len; i++)
+        array[i] = filler;
+}
+
 
 void modTable(Table table, int array_len) {
 
@@ -84,19 +100,17 @@ void modTable(Table *table, int array_len) {
 
 int main() {
 
-    Table tablica = Table();
-    Table *tablicaClone = tablica.clone();
-    tablica.printTable();
-    std::cout << std::endl;
-    tablicaClone->printTable();
-    std::cout << std::endl;
+    Table table = Table();
+    Table *tableShared = table.share();
+    Table *tableShared2 = table.share();
 
-    modTable(tablica, 3);
-    tablica.printTable();
+    table.printTable();
+    tableShared->fillTable(5);
     std::cout << std::endl;
+    table.printTable();
 
-    modTable(tablicaClone, 3);
-    tablicaClone->printTable();
-    std::cout << std::endl;
+    delete tableShared;
+    delete tableShared2;
+
     return 0;
 }
