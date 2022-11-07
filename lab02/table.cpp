@@ -3,11 +3,16 @@
 #include <string>
 
 
+const std::string Table::default_name = "Tablica";
+const int Table::default_array_len = 5;
+const bool Table::default_shared = false;
+
 Table::Table() {
 
     name = default_name;
     array_len = default_array_len;
     array = new int[array_len];
+    shared = default_shared;
 
     std::cout << "bezp: '" << name << "'" << std::endl;
 }
@@ -19,6 +24,7 @@ Table::Table(std::string name, int array_len) {
         array_len = default_array_len;
     this->array_len = array_len;
     array = new int[array_len];
+    shared = default_shared;
 
     std::cout << "param: '" << name << "'" << std::endl;
 }
@@ -28,6 +34,7 @@ Table::Table(const Table &otherTable) {
     name = otherTable.name + "_copy";
     array_len = otherTable.array_len;
     array = new int[array_len];
+    shared = default_shared;
 
     for (int i = 0; i < array_len; i++)
         array[i] = otherTable.array[i];
@@ -35,15 +42,50 @@ Table::Table(const Table &otherTable) {
     std::cout << "kopiuj: '" << name << "'" << std::endl;
 }
 
-Table::~Table() {
+/* Table::~Table() {
 
-    delete[] array;
+    if (!shared)
+        delete[] array;
     std::cout << "usuwam: '" << name << "'" << std::endl;
-} 
+} */
+
+void Table::operator=(const Table &otherTable) {
+
+    array = otherTable.array;
+    array_len = otherTable.array_len;
+}
+
+Table Table::operator+(Table &otherTable) {
+
+    Table table;
+
+    int array_len = this->array_len + otherTable.array_len;
+    int *array = new int[array_len];
+
+    for (int i = 0; i < this->array_len; i++)
+        array[i] = this->array[i];
+    for (int i = this->array_len; i < array_len; i++)
+        array[i] = otherTable.array[i - this->array_len];
+
+    table.array_len = array_len;
+    delete[] table.array;
+    table.array = array;
+    return table;
+}
 
 Table *Table::clone() {
     
     return new Table(*this);
+}
+
+Table *Table::share() {
+
+    Table *table = new Table(name + "_shared", array_len);
+    delete[] table->array;
+    table->array = array;
+    table->shared = true;
+
+    return table;
 }
 
 void Table::setName(std::string name) {
@@ -74,10 +116,30 @@ bool Table::setArrayLen(int array_len) {
     return true;
 }
 
+void Table::setValueAt(int index, int value) {
+
+    if (index < 0 || index >= array_len)
+        return;
+
+    array[index] = value;
+}
+
 void Table::printTable() {
 
     for (int i = 0; i < array_len; i++)
         std::cout << name << "[" << i << "] = " << array[i] << std::endl;
+}
+
+void Table::fillTable(int filler) {
+
+    for (int i = 0; i < array_len; i++)
+        array[i] = filler;
+}
+
+void Table::fillTableInc(int filler) {
+
+    for (int i = 0; i < array_len; i++)
+        array[i] = filler + i;
 }
 
 
@@ -89,24 +151,4 @@ void modTable(Table table, int array_len) {
 void modTable(Table *table, int array_len) {
 
     table->setArrayLen(array_len);
-}
-
-
-int main() {
-
-    Table tablica = Table();
-    Table *tablicaClone = tablica.clone();
-    tablica.printTable();
-    std::cout << std::endl;
-    tablicaClone->printTable();
-    std::cout << std::endl;
-
-    modTable(tablica, 3);
-    tablica.printTable();
-    std::cout << std::endl;
-
-    modTable(tablicaClone, 3);
-    tablicaClone->printTable();
-    std::cout << std::endl;
-    return 0;
 }
