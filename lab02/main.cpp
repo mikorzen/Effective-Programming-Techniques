@@ -10,6 +10,7 @@ int main() {
     table1.fillTableInc(1);
     table2.fillTableInc(51);
 
+    // błąd przy obecnym destruktorze - próba wielokrotnej dealokacji tej samej tablicy
     table1 = table2;
 
     table2.setValueAt(2, 123);
@@ -17,9 +18,9 @@ int main() {
     table1.printTable();
     std::cout << std::endl;
     table2.printTable();
+    std::cout << std::endl;
 
     Table table3 = table1 + table2;
-    std::cout << std::endl;
     table3.printTable();
 
     return 0;

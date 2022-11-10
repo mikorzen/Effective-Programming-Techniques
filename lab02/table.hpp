@@ -19,7 +19,7 @@ class Table {
         Table();
         Table(std::string name, int array_len);
         Table(const Table &otherTable);
-        //~Table();
+        // ~Table();
 
         Table *clone();
         Table *share();
