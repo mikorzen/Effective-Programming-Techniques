@@ -10,13 +10,12 @@ LIBRARIES   :=
 
 all: $(BIN)/$(EXECUTABLE)
 
-run: 
-	clean all
+run: clean all
 	clear
 	./$(BIN)/$(EXECUTABLE)
 
-$(BIN)/$(EXECUTABLE): 
-	$(SOURCE)/*.cpp $(CXX) $(CXX_FLAGS) -I$(INCLUDE) $^ -o $@ $(LIBRARIES)
+$(BIN)/$(EXECUTABLE): $(SOURCE)/*.cpp 
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) $^ -o $@ $(LIBRARIES)
 
 clean:
 	-rm $(BIN)/*

@@ -3,7 +3,7 @@
 
 int main() {
 
-    Table table1, table2;
+    Table table1("Tab1", 5), table2("Tab2", 5);
     table1.setArrayLen(6);
     table2.setArrayLen(4);
 
@@ -20,6 +20,7 @@ int main() {
     table2.printTable();
     std::cout << std::endl;
 
+    std::cout << "konkatenacja" << std::endl;
     Table table3 = table1 + table2;
     table3.printTable();
 
