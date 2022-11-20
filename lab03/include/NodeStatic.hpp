@@ -13,15 +13,20 @@ class NodeStatic {
     public:
 
         NodeStatic();
-        ~NodeStatic();
+        //~NodeStatic();
 
         void setValue(int value);
-
-        int getChildrenNum();
+        void setParent(NodeStatic* parent);
         void addChild();
+        void addChild(NodeStatic child);
+        void removeChild(NodeStatic* child);
+
+        int getValue();
+        NodeStatic* getParent();
+        int getChildrenNum();
         NodeStatic* getChild(int childOffset);
 
         void print();
-        void printAllBelow();
-        void printAllAbove();
+        void printBelow();
+        void printAbove();
 };

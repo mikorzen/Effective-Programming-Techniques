@@ -11,9 +11,11 @@ class TreeStatic {
     public:
 
         TreeStatic();
-        ~TreeStatic();
+        //~TreeStatic();
 
         NodeStatic* getRoot();
 
         void printTree();
+
+        bool moveSubtree(NodeStatic* parent, NodeStatic* child);
 };

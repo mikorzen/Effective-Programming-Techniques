@@ -5,7 +5,7 @@
 NodeStatic::NodeStatic() {
 
     value = 0;
-    parent = nullptr;
+    parent = NULL;
 }
 
 void NodeStatic::setValue(int value) {
@@ -13,14 +13,51 @@ void NodeStatic::setValue(int value) {
     this->value = value;
 }
 
-int NodeStatic::getChildrenNum() {
+void NodeStatic::setParent(NodeStatic* parent) {
 
-    return children.size();
+    this->parent = parent;
 }
 
 void NodeStatic::addChild() {
 
-    children.push_back(NodeStatic());
+    NodeStatic child;
+    child.parent = this;
+    children.push_back(child);
+}
+
+void NodeStatic::addChild(NodeStatic child) {
+
+    child.parent = this;
+    children.push_back(child);
+}
+
+void NodeStatic::removeChild(NodeStatic* child) {
+
+    int childrenNum = getChildrenNum();
+    for (int i = 0; i < childrenNum; i++) {
+
+        NodeStatic* currChild = &children.at(i);
+        if (currChild == child) {
+
+            currChild->setParent(NULL);
+            children.erase(children.begin() + i);
+        }
+    }
+}
+
+int NodeStatic::getValue() {
+
+    return value;
+}
+
+NodeStatic* NodeStatic::getParent() {
+
+    return parent;
+}
+
+int NodeStatic::getChildrenNum() {
+
+    return children.size();
 }
 
 NodeStatic* NodeStatic::getChild(int childOffset) {
@@ -36,17 +73,18 @@ void NodeStatic::print() {
     std::cout << " " << value;
 }
 
-void NodeStatic::printAllBelow() {
+void NodeStatic::printBelow() {
 
     this->print();
 
     int childrenNum = getChildrenNum();
     for (int i = 0; i < childrenNum; i++)
-        children.at(i).printAllBelow();
+        children.at(i).printBelow();
 }
 
-void NodeStatic::printAllAbove() {
+void NodeStatic::printAbove() {
 
     this->print();
-    parent->printAllAbove();
+    if (parent != NULL)
+        parent->printAbove();
 }
