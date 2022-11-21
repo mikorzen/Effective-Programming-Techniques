@@ -16,12 +16,17 @@ class NodeDynamic {
         ~NodeDynamic();
 
         void setValue(int value);
-
-        int getChildrenNum();
+        void setParent(NodeDynamic* parent);
         void addChild();
+        void addChild(NodeDynamic* child);
+        void removeChild(NodeDynamic* child);
+
+        int getValue();
+        NodeDynamic* getParent();
+        int getChildrenNum();
         NodeDynamic* getChild(int childOffset);
 
         void print();
-        void printAllBelow();
-        void printAllAbove();
+        void printBelow();
+        void printAbove();
 };

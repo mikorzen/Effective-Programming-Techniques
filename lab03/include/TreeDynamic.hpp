@@ -13,7 +13,9 @@ class TreeDynamic {
         TreeDynamic();
         ~TreeDynamic();
 
-        TreeDynamic* getRoot();
+        NodeDynamic* getRoot();
 
         void printTree();
+
+        bool moveSubtree(NodeDynamic* parent, NodeDynamic* child);
 };

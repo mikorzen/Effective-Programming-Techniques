@@ -11,7 +11,6 @@ class TreeStatic {
     public:
 
         TreeStatic();
-        //~TreeStatic();
 
         NodeStatic* getRoot();
 

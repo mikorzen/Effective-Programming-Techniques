@@ -41,6 +41,7 @@ void NodeStatic::removeChild(NodeStatic* child) {
 
             currChild->setParent(NULL);
             children.erase(children.begin() + i);
+            return;
         }
     }
 }

@@ -3,6 +3,11 @@
 #include <iostream>
 
 
+TreeStatic::TreeStatic() {
+
+    root = NodeStatic();
+}
+
 NodeStatic* TreeStatic::getRoot() {
 
     return &root;
@@ -20,11 +25,11 @@ bool TreeStatic::moveSubtree(NodeStatic* parent, NodeStatic* child) {
         return false;
 
     parent->addChild(*child);
-    
     NodeStatic* childParent = child->getParent();
+    child->setParent(parent);
+    
     if (childParent != NULL)
         childParent->removeChild(child);
 
-    child->setParent(parent);
     return true;
 }

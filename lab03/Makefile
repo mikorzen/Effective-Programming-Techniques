@@ -1,7 +1,7 @@
 CXX       := g++
 CXX_FLAGS := -std=c++23 -ggdb
 
-BIN		:= bin
+BIN			:= bin
 SOURCE    	:= src
 INCLUDE 	:= include
 EXECUTABLE  := main
