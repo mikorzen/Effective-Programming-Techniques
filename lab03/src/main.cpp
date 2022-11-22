@@ -139,6 +139,7 @@ TreeDynamic* createTree6() {
 
 int main() {
 
+// test 1
 /*     NodeStatic tree1 = createTree1();
 
     tree1.printBelow();
@@ -148,7 +149,8 @@ int main() {
 
     tree1.getChild(0)->getChild(1)->printAbove(); */
 
-    TreeStatic tree2 = createTree2();
+// test 2
+/*     TreeStatic tree2 = createTree2();
     TreeStatic tree3 = createTree3();
 
     tree2.printTree();
@@ -159,8 +161,9 @@ int main() {
     tree2.moveSubtree(tree2.getRoot()->getChild(2), tree3.getRoot()->getChild(0));
 
     tree2.printTree();
-    tree3.printTree();
+    tree3.printTree(); */
 
+// test 3
 /*     NodeDynamic* tree4 = createTree4();
 
     tree4->printBelow();
@@ -172,6 +175,7 @@ int main() {
 
     delete tree4; */
 
+// test 4
 /*     TreeDynamic* tree5 = createTree5();
     TreeDynamic* tree6 = createTree6();
 
@@ -187,4 +191,17 @@ int main() {
 
     delete tree5;
     delete tree6; */
+
+// test 5
+/*     NodeStatic tree1 = createTree1();
+
+    NodeStatic* child1 = tree1.getChild(0);
+    NodeStatic* child2 = child1->getChild(0);
+    NodeStatic* child3 = tree1.getChild(1);
+
+    if (child1->isRelatedTo(*child2))
+        std::cout << "related" << std::endl;
+
+    if (!child3->isRelatedTo(*child1))
+        std::cout << "unrelated" << std::endl; */
 }

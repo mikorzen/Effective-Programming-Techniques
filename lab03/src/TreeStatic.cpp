@@ -24,10 +24,9 @@ bool TreeStatic::moveSubtree(NodeStatic* parent, NodeStatic* child) {
     if (parent == NULL || child == NULL)
         return false;
 
-    parent->addChild(*child);
     NodeStatic* childParent = child->getParent();
-    child->setParent(parent);
-    
+    parent->addChild(child);
+
     if (childParent != NULL)
         childParent->removeChild(child);
 

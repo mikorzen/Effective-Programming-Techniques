@@ -17,15 +17,19 @@ class NodeStatic {
         void setValue(int value);
         void setParent(NodeStatic* parent);
         void addChild();
-        void addChild(NodeStatic child);
+        void addChild(NodeStatic* child);
         void removeChild(NodeStatic* child);
 
-        int getValue();
-        NodeStatic* getParent();
-        int getChildrenNum();
+        int getValue() const;
+        NodeStatic* getParent() const;
+        int getChildrenNum() const;
         NodeStatic* getChild(int childOffset);
 
         void print();
         void printBelow();
         void printAbove();
+
+        bool operator==(NodeStatic& other);
+        bool isInSubtree(const NodeStatic& other) const;
+        bool isRelatedTo(const NodeStatic& other) const;
 };
