@@ -13,12 +13,14 @@ class NodeStatic {
     public:
 
         NodeStatic();
+        NodeStatic(NodeStatic& other);
+        ~NodeStatic();
 
         void setValue(int value);
         void setParent(NodeStatic* parent);
         void addChild();
         void addChild(NodeStatic* child);
-        void removeChild(NodeStatic* child);
+        bool removeChild(NodeStatic* child);
 
         int getValue() const;
         NodeStatic* getParent() const;
@@ -29,7 +31,6 @@ class NodeStatic {
         void printBelow();
         void printAbove();
 
-        bool operator==(NodeStatic& other);
         bool isInSubtree(const NodeStatic& other) const;
         bool isRelatedTo(const NodeStatic& other) const;
 };

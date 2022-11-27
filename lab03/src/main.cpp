@@ -193,7 +193,7 @@ int main() {
     delete tree6; */
 
 // test 5
-/*     NodeStatic tree1 = createTree1();
+    NodeStatic tree1 = createTree1();
 
     NodeStatic* child1 = tree1.getChild(0);
     NodeStatic* child2 = child1->getChild(0);
@@ -203,5 +203,5 @@ int main() {
         std::cout << "related" << std::endl;
 
     if (!child3->isRelatedTo(*child1))
-        std::cout << "unrelated" << std::endl; */
+        std::cout << "unrelated" << std::endl;
 }

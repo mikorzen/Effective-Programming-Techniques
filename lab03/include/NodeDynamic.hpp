@@ -19,7 +19,7 @@ class NodeDynamic {
         void setParent(NodeDynamic* parent);
         void addChild();
         void addChild(NodeDynamic* child);
-        void removeChild(NodeDynamic* child);
+        bool removeChild(NodeDynamic* child);
 
         int getValue();
         NodeDynamic* getParent();

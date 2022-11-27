@@ -38,7 +38,7 @@ void NodeDynamic::addChild(NodeDynamic* child) {
     children.push_back(child);
 }
 
-void NodeDynamic::removeChild(NodeDynamic* child) {
+bool NodeDynamic::removeChild(NodeDynamic* child) {
 
     int childrenNum = getChildrenNum();
     for (int i = 0; i < childrenNum; i++) {
@@ -48,9 +48,10 @@ void NodeDynamic::removeChild(NodeDynamic* child) {
 
             currChild->setParent(NULL);
             children.erase(children.begin() + i);
-            return;
+            return true;
         }
     }
+    return false;
 }
 
 int NodeDynamic::getValue() {

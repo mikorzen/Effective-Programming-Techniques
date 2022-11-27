@@ -8,13 +8,17 @@ NodeStatic::NodeStatic() {
     parent = NULL;
 }
 
-bool NodeStatic::operator==(NodeStatic& other) {
+NodeStatic::NodeStatic(NodeStatic& other) {
 
-    bool valueEqual = value == other.value;
-    bool parentEqual = parent == other.parent;
-    bool childrenNumEqual = getChildrenNum() == other.getChildrenNum();
-    
-    return valueEqual && parentEqual && childrenNumEqual;
+    value = other.value;
+    parent = other.parent;
+    children = other.children;
+}
+
+NodeStatic::~NodeStatic() {
+
+    parent = NULL;
+    children.clear();
 }
 
 void NodeStatic::setValue(int value) {
@@ -40,7 +44,7 @@ void NodeStatic::addChild(NodeStatic* child) {
     children.push_back(*child);
 }
 
-void NodeStatic::removeChild(NodeStatic* child) {
+bool NodeStatic::removeChild(NodeStatic* child) {
 
     int childrenNum = getChildrenNum();
     for (int i = 0; i < childrenNum; i++) {
@@ -50,9 +54,10 @@ void NodeStatic::removeChild(NodeStatic* child) {
 
             currChild->setParent(NULL);
             children.erase(children.begin() + i);
-            return;
+            return true;
         }
     }
+    return false;
 }
 
 int NodeStatic::getValue() const {
@@ -104,12 +109,12 @@ bool NodeStatic::isInSubtree(const NodeStatic& other) const {
     if (this == &other)
         return true;
 
-    NodeStatic* currParent = other.getParent();
+    NodeStatic* currParent = other.parent;
     while (this != currParent) {
 
         if (currParent == NULL) 
             return false;
-        currParent = currParent->getParent();
+        currParent = currParent->parent;
     }
 
     return true;
