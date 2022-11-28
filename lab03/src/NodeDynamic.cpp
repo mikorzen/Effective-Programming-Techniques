@@ -13,6 +13,8 @@ NodeDynamic::~NodeDynamic() {
     int childrenNum = getChildrenNum();
     for (int i = 0; i < childrenNum; i++)
         delete children.at(i);
+
+    children.clear();
 }
 
 void NodeDynamic::setValue(int value) {
