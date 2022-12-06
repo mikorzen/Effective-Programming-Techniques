@@ -10,6 +10,8 @@ NodeDynamic::NodeDynamic() {
 
 NodeDynamic::~NodeDynamic() {
 
+    parent = NULL;
+
     int childrenNum = getChildrenNum();
     for (int i = 0; i < childrenNum; i++)
         delete children.at(i);

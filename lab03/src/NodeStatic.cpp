@@ -100,6 +100,7 @@ void NodeStatic::printBelow() {
 void NodeStatic::printAbove() {
 
     print();
+    
     if (parent != NULL)
         parent->printAbove();
 }
