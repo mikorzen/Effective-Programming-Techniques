@@ -13,7 +13,6 @@ class NodeStatic {
     public:
 
         NodeStatic();
-        NodeStatic(NodeStatic& other);
         ~NodeStatic();
 
         void setValue(int value);

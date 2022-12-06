@@ -8,13 +8,6 @@ NodeStatic::NodeStatic() {
     parent = NULL;
 }
 
-NodeStatic::NodeStatic(NodeStatic& other) {
-
-    value = other.value;
-    parent = other.parent;
-    children = other.children;
-}
-
 NodeStatic::~NodeStatic() {
 
     parent = NULL;
