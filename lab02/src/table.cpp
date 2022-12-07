@@ -57,19 +57,15 @@ void Table::operator=(const Table &otherTable) {
 
 Table Table::operator+(Table &otherTable) {
 
-    Table table;
-
     int array_len = this->array_len + otherTable.array_len;
-    int *array = new int[array_len];
+    Table table("Tablica", array_len);
+    int *array = table.array;
 
     for (int i = 0; i < this->array_len; i++)
         array[i] = this->array[i];
     for (int i = this->array_len; i < array_len; i++)
         array[i] = otherTable.array[i - this->array_len];
 
-    table.array_len = array_len;
-    delete[] table.array;
-    table.array = array;
     return table;
 }
 
