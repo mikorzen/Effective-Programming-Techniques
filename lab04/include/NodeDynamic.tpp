@@ -7,7 +7,7 @@
 template<typename T> 
 NodeDynamic<T>::NodeDynamic() {
 
-    value = 0;
+    value = T();
     parent = NULL;
 }
 
@@ -24,7 +24,7 @@ NodeDynamic<T>::~NodeDynamic() {
 }
 
 template<typename T> 
-void NodeDynamic<T>::setValue(int value) {
+void NodeDynamic<T>::setValue(T value) {
 
     this->value = value;
 }

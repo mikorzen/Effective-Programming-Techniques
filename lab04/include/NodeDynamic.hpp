@@ -17,7 +17,7 @@ class NodeDynamic {
         NodeDynamic();
         ~NodeDynamic();
 
-        void setValue(int value);
+        void setValue(T value);
         void setParent(NodeDynamic<T>* parent);
         void addChild();
         void addChild(NodeDynamic<T>* child);
