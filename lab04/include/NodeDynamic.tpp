@@ -18,7 +18,7 @@ NodeDynamic<T>::~NodeDynamic() {
 
     int childrenNum = getChildrenNum();
     for (int i = 0; i < childrenNum; i++)
-        delete children.at(i);
+        delete children[i];
 
     children.clear();
 }
@@ -56,7 +56,7 @@ bool NodeDynamic<T>::removeChild(NodeDynamic<T>* child) {
     int childrenNum = getChildrenNum();
     for (int i = 0; i < childrenNum; i++) {
 
-        NodeDynamic<T>* currChild = children.at(i);
+        NodeDynamic<T>* currChild = children[i];
         if (currChild == child) {
 
             currChild->setParent(NULL);
@@ -85,13 +85,19 @@ int NodeDynamic<T>::getChildrenNum() {
     return children.size();
 }
 
+template<typename T>
+std::vector<NodeDynamic<T>*> NodeDynamic<T>::getChildren() {
+
+    return children;
+}
+
 template<typename T> 
 NodeDynamic<T>* NodeDynamic<T>::getChild(int childOffset) {
 
     if (childOffset < 0 || childOffset >= getChildrenNum())
         return NULL;
 
-    return children.at(childOffset);
+    return children[childOffset];
 }
 
 template<typename T> 
@@ -107,7 +113,7 @@ void NodeDynamic<T>::printBelow() {
 
     int childrenNum = getChildrenNum();
     for (int i = 0; i < childrenNum; i++)
-        children.at(i)->printBelow();
+        children[i]->printBelow();
 }
 
 template<typename T> 
