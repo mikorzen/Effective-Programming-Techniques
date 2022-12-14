@@ -117,8 +117,6 @@ void NodeDynamic<double>::sumOfSubtree(double& sum) {
         return;
 
     std::vector<NodeDynamic<double>*> children = getChildren();
-    for(int i = 0; i < children.size(); i++) {
-        
+    for(int i = 0; i < children.size(); i++)
         children[i]->sumOfSubtree(sum);
-    }
 }
