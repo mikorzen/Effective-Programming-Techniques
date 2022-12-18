@@ -98,7 +98,7 @@ TreeDynamic<double> createTree4() {
 
 int main() {
 
-// test
+//* test
     TreeDynamic<int> tree1 = createTree1();
     TreeDynamic<int> tree2 = createTree2();
     tree1.printTree();
