@@ -22,12 +22,6 @@ SmartPointer<T>::SmartPointer(const SmartPointer<T>& other) {
 template<typename T>
 SmartPointer<T>::~SmartPointer() {
 
-    destroy();
-}
-
-template<typename T>
-void SmartPointer<T>::destroy() {
-
     if (counter->decrement() == 0) {
 
         delete pointer;
@@ -50,7 +44,11 @@ T* SmartPointer<T>::operator->() {
 template<typename T>
 void SmartPointer<T>::operator=(const SmartPointer<T>& other) {
 
-    destroy();
+    if (/* pointer != nullptr && */ counter->decrement() == 0) {
+
+        delete pointer;
+        delete counter;
+    }
 
     pointer = other.pointer;
     counter = other.counter;

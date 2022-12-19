@@ -42,17 +42,20 @@ Table::Table(const Table &otherTable) {
     std::cout << "kopiuj: '" << name << "'" << std::endl;
 }
 
-/* Table::~Table() {
+Table::~Table() {
 
     if (!shared)
         delete[] array;
     std::cout << "usuwam: '" << name << "'" << std::endl;
-} */
+}
 
 void Table::operator=(const Table &otherTable) {
 
-    array = otherTable.array;
     array_len = otherTable.array_len;
+    array = new int[array_len];
+
+    for (int i = 0; i < array_len; i++)
+        array[i] = otherTable.array[i];
 }
 
 Table Table::operator+(Table &otherTable) {

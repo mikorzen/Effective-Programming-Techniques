@@ -1,124 +1,92 @@
-#include "NodeDynamic.hpp"
-#include "TreeDynamic.hpp"
-
 #include <iostream>
 
+#include "Tab.hpp"
+#include "Table.hpp"
 
-TreeDynamic<int> createTree1() {
 
-    TreeDynamic<int> tree;
-    NodeDynamic<int>* root = tree.getRoot();
+void blank() {
 
-    root->setValue(0);
-
-    root->addChild();
-    root->addChild();
-    root->addChild();
-    root->getChild(0)->setValue(1);
-    root->getChild(1)->setValue(2);
-    root->getChild(2)->setValue(3);
-
-    root->getChild(2)->addChild();
-    root->getChild(2)->getChild(0)->setValue(4);
-
-    root->getChild(2)->getChild(0)->addChild();
-    root->getChild(2)->getChild(0)->getChild(0)->setValue(5);
-
-    return tree;
+    std::cout << std::endl;
 }
 
-TreeDynamic<int> createTree2() {
+Tab createTabCopy() {
 
-    TreeDynamic<int> tree;
-    NodeDynamic<int>* root = tree.getRoot();
-
-    root->setValue(50);
-
-    root->addChild();
-    root->addChild();
-    root->getChild(0)->setValue(54);
-    root->getChild(1)->setValue(55);
-
-    root->getChild(0)->addChild();
-    root->getChild(0)->addChild();
-    root->getChild(0)->getChild(0)->setValue(56);
-    root->getChild(0)->getChild(1)->setValue(57);
-
-    root->getChild(0)->getChild(0)->addChild();
-    root->getChild(0)->getChild(0)->getChild(0)->setValue(58);
-
-    return tree;
+    Tab tab;
+    tab.setSize(5);
+    return tab;
 }
 
-TreeDynamic<std::string> createTree3() {
+Tab createTabMove() {
 
-    TreeDynamic<std::string> tree;
-    NodeDynamic<std::string>* root = tree.getRoot();
-
-    root->setValue("0");
-
-    root->addChild();
-    root->addChild();
-    root->addChild();
-    root->getChild(0)->setValue("1");
-    root->getChild(1)->setValue("2");
-    root->getChild(2)->setValue("3");
-
-    root->getChild(2)->addChild();
-    root->getChild(2)->getChild(0)->setValue("4");
-
-    root->getChild(2)->getChild(0)->addChild();
-    root->getChild(2)->getChild(0)->getChild(0)->setValue("5");
-
-    return tree;
+    Tab tab;
+    tab.setSize(5);
+    return std::move(tab);
 }
 
-TreeDynamic<double> createTree4() {
+Table createTableCopy() {
 
-    TreeDynamic<double> tree;
-    NodeDynamic<double>* root = tree.getRoot();
+    Table table(5);
+    return table;
+}
 
-    root->setValue(0.1);
+Table createTableMove() {
 
-    root->addChild();
-    root->addChild();
-    root->addChild();
-    root->getChild(0)->setValue(1.1);
-    root->getChild(1)->setValue(2.1);
-    root->getChild(2)->setValue(3.1);
+    Table table(5);
+    return std::move(table);
+}
 
-    root->getChild(2)->addChild();
-    root->getChild(2)->getChild(0)->setValue(4.1);
+void testTabCopy() {
+    
+    Tab tab1 = createTabCopy();
+    blank();
+    Tab tab2 = tab1;
+    blank();
+    Tab tab3;
+    tab3 = tab2;
+    blank();
+}
 
-    root->getChild(2)->getChild(0)->addChild();
-    root->getChild(2)->getChild(0)->getChild(0)->setValue(5.1);
+void testTabMove() {
 
-    return tree;
+    Tab tab1 = createTabMove();
+    blank();
+    Tab tab2 = std::move(tab1);
+    blank();
+    Tab tab3;
+    tab3 = std::move(tab2);
+    blank();
+}
+
+void testTableCopy() {
+
+    Table table1 = createTableCopy();
+    blank();
+    Table table2 = table1;
+    blank();
+    Table table3;
+    table3 = table2;
+    blank();
+    Table table4 = table3 + table2;
+    blank();
+}
+
+void testTableMove() {
+
+    Table table1 = createTableMove();
+    blank();
+    Table table2 = std::move(table1);
+    blank();
+    Table table3;
+    table3 = std::move(table2);
+    blank();
+    Table table4 = std::move(table3 + std::move(Table()));
+    blank();
 }
 
 int main() {
 
-// test
-    TreeDynamic<int> tree1 = createTree1();
-    TreeDynamic<int> tree2 = createTree2();
-    tree1.printTree();
-    tree2.printTree();
-
-    std::cout << std::endl;
-
-    tree1.moveSubtree(tree1.getRoot()->getChild(2), tree2.getRoot()->getChild(0));
-
-    tree1.printTree();
-    tree2.printTree();
-
-    std::cout << std::endl;
-
-    TreeDynamic<std::string> tree3 = createTree3();
-    tree3.printTree();
-
-    std::cout << std::endl;
-
-    TreeDynamic<double> tree4 = createTree4();
-
-    std::cout << "Suma wartosci w drzewie: " << tree4.sumOfValues() << std::endl << std::endl;
+    //testTabCopy();
+    //testTabMove();
+    testTableCopy();
+    //testTableMove();
 }

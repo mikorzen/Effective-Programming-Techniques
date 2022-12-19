@@ -11,8 +11,6 @@ class SmartPointer {
         T* pointer;
         ReferenceCounter *counter;
 
-        void destroy();
-
     public: 
 
         SmartPointer(T* pointer);
