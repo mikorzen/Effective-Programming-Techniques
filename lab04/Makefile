@@ -4,7 +4,7 @@ CXX_FLAGS := -std=c++23 -ggdb
 BIN			:= bin
 SOURCE    	:= src
 INCLUDE 	:= include
-EXECUTABLE  := main
+EXECUTABLE  := main.exe
 LIBRARIES   :=
 
 
