@@ -44,7 +44,7 @@ T* SmartPointer<T>::operator->() {
 template<typename T>
 void SmartPointer<T>::operator=(const SmartPointer<T>& other) {
 
-    if (/* pointer != nullptr && */ counter->decrement() == 0) {
+    if (pointer != nullptr && counter->decrement() == 0) {
 
         delete pointer;
         delete counter;
