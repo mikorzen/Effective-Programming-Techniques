@@ -86,7 +86,7 @@ void testTableMove() {
 int main() {
 
     //testTabCopy();
-    //testTabMove();
-    testTableCopy();
+    testTabMove();
+    //testTableCopy();
     //testTableMove();
 }

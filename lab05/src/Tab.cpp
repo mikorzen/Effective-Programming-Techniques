@@ -45,7 +45,7 @@ void Tab::copy(const Tab& other) {
         table[i] = other.table[i];
 }
 
-Tab Tab::operator=(const Tab& other) {
+Tab& Tab::operator=(const Tab& other) {
 
     if (table != nullptr)
         delete[] table;
@@ -56,7 +56,7 @@ Tab Tab::operator=(const Tab& other) {
     return *this;
 }
 
-Tab Tab::operator=(Tab&& other) {
+Tab& Tab::operator=(Tab&& other) {
 
     if (table != nullptr)
         delete[] table;
@@ -66,7 +66,7 @@ Tab Tab::operator=(Tab&& other) {
     other.table = nullptr;
 
     std::cout << "Move assigment" << std::endl;
-    return std::move(*this);
+    return *this;
 }
 
 bool Tab::setSize(int size) {

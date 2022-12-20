@@ -39,6 +39,3 @@ class Table {
         int getSize();
         int getValueAt(int index);
 };
-
-void modTable(Table table, int array_len);
-void modTable(Table *table, int array_len);

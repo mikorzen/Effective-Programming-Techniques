@@ -19,8 +19,8 @@ class Tab {
         Tab(Tab&& other);
         ~Tab();
 
-        Tab operator=(const Tab& other);
-        Tab operator=(Tab&& other);
+        Tab& operator=(const Tab& other);
+        Tab& operator=(Tab&& other);
 
         bool setSize(int size);
         int getSize();
