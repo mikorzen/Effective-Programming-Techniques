@@ -5,6 +5,7 @@
 #include <Individual.hpp>
 #include <GeneticAlgorithm.hpp>
 #include <KnapsackProblem.hpp>
+#include <OrdinalHelper.hpp>
 
 
 GeneticAlgorithm::GeneticAlgorithm(KnapsackProblem& problem, 
@@ -108,15 +109,14 @@ void GeneticAlgorithm::run() {
         crossoverPopulation();
         mutatePopulation();
     }
-    evaluatePopulation(iterations);
-
     printBestPopulation();
     printBestIndividual();
 }
 
 void GeneticAlgorithm::printBestPopulation() const {
 
-    std::cout << "Population the best individual comes from (" << bestIteration << chooseSuffix(bestIteration);
+    std::cout << "Population the best individual comes from (" << bestIteration;
+    std::cout << OrdinalHelper::chooseSuffix(bestIteration);
     std::cout << " out of " << iterations << " different populations): " << std::endl; 
     
     std::cout << "\tLp.\tGenetic code\t\tFitness" << std::endl;
@@ -129,21 +129,11 @@ void GeneticAlgorithm::printBestPopulation() const {
 
 void GeneticAlgorithm::printBestIndividual() const {
 
-    std::cout << "Properties of the best individual (" << bestIndex << chooseSuffix(bestIndex);
+    std::cout << "Properties of the best individual (" << bestIndex;
+    std::cout << OrdinalHelper::chooseSuffix(bestIndex);
     std::cout << " out of " << populationSize << " in a population): " << std::endl;
     std::cout << "\tGenetic code:  "; bestIndividual.printGeneticCode();
     std::cout << std::endl;
     std::cout << "\tFitness value: " << bestIndividual.getFitness() << std::endl;
     std::cout << std::endl;
-}
-
-std::string GeneticAlgorithm::chooseSuffix(int number) const {
-
-    std::string suffix = "th";
-    switch (number % 10) {
-        case 1: suffix = "st"; break;
-        case 2: suffix = "nd"; break;
-        case 3: suffix = "rd"; break;
-    }
-    return suffix;
 }

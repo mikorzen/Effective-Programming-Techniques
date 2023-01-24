@@ -33,8 +33,6 @@ class GeneticAlgorithm {
         void crossoverPopulation();
         void mutatePopulation();
 
-        std::string chooseSuffix(int number) const;
-
     public:
 
         GeneticAlgorithm() = delete;

@@ -114,8 +114,8 @@ void KnapsackProblem::print() const {
 
     std::cout << "Problem properties:" << std::endl;
 
-    std::cout << "\tCapacity: " << capacity << std::endl;
-    std::cout << "\tItem details:" << std::endl;
+    std::cout << "Capacity: " << capacity << std::endl;
+    std::cout << "Item details:" << std::endl;
 
     std::cout << "\tLp.\tValue\t\tWeight" << std::endl;
     for (int i = 0; i < itemCount; i++)
