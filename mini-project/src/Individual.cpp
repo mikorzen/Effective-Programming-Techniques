@@ -9,6 +9,8 @@
 
 Individual::Individual() {
 
+    length = 0;
+    fitness = 0;
     recentlyMutated = true;
 
     generator = std::mt19937(rand_device());
