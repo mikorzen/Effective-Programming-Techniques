@@ -6,12 +6,46 @@
 
 #include <KnapsackProblem.hpp>
 
+KnapsackProblem::KnapsackProblem() {
 
-bool KnapsackProblem::loadItems(const std::string &filepath) {
+    capacity = 0;
+    itemCount = 0;
+}
+
+KnapsackProblem::KnapsackProblem(double capacity) {
+
+    if (capacity <= 0)
+        throw std::runtime_error("Failed to instantiate problem (capacity must be greater than 0).");
+    this->capacity = capacity;
+}
+
+bool KnapsackProblem::addItem(double weight, double value) {
+
+    if (weight <= 0) {
+        std::cout << "Failed to add item (weight must be greater than 0)." << std::endl;
+        return false;
+    }
+    if (value < 0) {
+        std::cout << "Failed to add item (weight must be no less than 0)." << std::endl;
+        return false;
+    }
+
+    weights.push_back(weight);
+    values.push_back(value);
+    itemCount++;
+    return true;
+}
+
+bool KnapsackProblem::loadItemsFromFile(const std::string &filepath) {
 
     std::ifstream file(filepath);
     if (!file.is_open())
         return false;
+
+    capacity = 0;
+    itemCount = 0;
+    weights.clear();
+    values.clear();
 
     std::string line;
     file >> line;

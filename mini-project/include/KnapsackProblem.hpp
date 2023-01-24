@@ -15,7 +15,11 @@ class KnapsackProblem {
 
     public:
 
-        bool loadItems(const std::string &filepath);
+        KnapsackProblem();
+        KnapsackProblem(double capacity);
+
+        bool addItem(double weight, double value);
+        bool loadItemsFromFile(const std::string &filepath);
 
         double getCapacity() const;
         int getItemCount() const;

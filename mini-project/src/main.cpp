@@ -1,3 +1,4 @@
+
 #include <iostream>
 
 #include <KnapsackProblem.hpp>
@@ -10,7 +11,7 @@ int main() {
     std::string filepath = "../data/f6_l-d_kp_10_60";
 
     try {
-        while(!problem.loadItems(filepath)) {
+        while(!problem.loadItemsFromFile(filepath)) {
             std::cout << "Failed to access file: " << filepath << std::endl;
             std::cout << "Do you wish to try again with the same file? (Y/N): ";
             std::string response;
