@@ -26,6 +26,8 @@ class KnapsackProblem {
         std::vector<double> getWeights() const;
         std::vector<double> getValues() const;
 
+        bool setCapacity(double capacity);
+
         double evaluate(const std::vector<bool>& geneticCode) const;
 
         void print() const;

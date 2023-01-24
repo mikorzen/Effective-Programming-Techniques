@@ -17,14 +17,14 @@ class Individual {
         bool recentlyMutated;
 
         std::random_device rand_device;
-        std::default_random_engine generator;
+        std::mt19937 generator;
         std::uniform_real_distribution<double> chance;
 
     public:
 
         Individual();
         Individual(int length);
-        Individual(const std::vector<bool>& geneticCode);
+        Individual(std::vector<bool>&& geneticCode);
         Individual(const Individual& other);
         Individual& operator=(const Individual& other);
 

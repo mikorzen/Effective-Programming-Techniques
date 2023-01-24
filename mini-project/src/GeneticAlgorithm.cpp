@@ -20,7 +20,7 @@ GeneticAlgorithm::GeneticAlgorithm(KnapsackProblem& problem,
     this->mutationChance = mutationChance;
     this->crossoverChance = crossoverChance;
 
-    generator = std::default_random_engine(rand_device());
+    generator = std::mt19937(rand_device());
     chance = std::uniform_real_distribution<double>(0.0, 1.0);
     index = std::uniform_int_distribution<int>(0, populationSize - 1);
 }
@@ -87,9 +87,9 @@ void GeneticAlgorithm::crossoverPopulation() {
             indv1 = children.first;
             indv2 = children.second;
         }
-        newPopulation.push_back(indv1);
+        newPopulation.push_back(std::move(indv1));
         if (i + 1 < populationSize)
-            newPopulation.push_back(indv2);
+            newPopulation.push_back(std::move(indv2));
     }
     population = newPopulation;
 }

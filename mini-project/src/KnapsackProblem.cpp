@@ -17,6 +17,7 @@ KnapsackProblem::KnapsackProblem(double capacity) {
     if (capacity <= 0)
         throw std::runtime_error("Failed to instantiate problem (capacity must be greater than 0).");
     this->capacity = capacity;
+    itemCount = 0;
 }
 
 bool KnapsackProblem::addItem(double weight, double value) {
@@ -94,6 +95,18 @@ std::vector<double> KnapsackProblem::getValues() const {
     return values;
 }
 
+bool KnapsackProblem::setCapacity(double capacity) {
+
+    if (capacity <= 0) {
+        std::cout << "Failed to assign the value of capacity (must be greater than 0)." << std::endl;
+        return false;
+    }
+    this->capacity = capacity;
+    itemCount = 0;
+    return true;
+}
+
+
 double KnapsackProblem::evaluate(const std::vector<bool>& geneticCode) const {
 
     double totalWeight = 0;
@@ -114,8 +127,8 @@ void KnapsackProblem::print() const {
 
     std::cout << "Problem properties:" << std::endl;
 
-    std::cout << "Capacity: " << capacity << std::endl;
-    std::cout << "Item details:" << std::endl;
+    std::cout << "    Capacity: " << capacity << std::endl;
+    std::cout << "    Item details:" << std::endl;
 
     std::cout << "\tLp.\tValue\t\tWeight" << std::endl;
     for (int i = 0; i < itemCount; i++)

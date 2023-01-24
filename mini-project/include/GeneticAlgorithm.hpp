@@ -17,7 +17,7 @@ class GeneticAlgorithm {
         double crossoverChance;
 
         std::random_device rand_device;
-        std::default_random_engine generator;
+        std::mt19937 generator;
         std::uniform_real_distribution<double> chance;
         std::uniform_int_distribution<int> index;
 
@@ -35,7 +35,7 @@ class GeneticAlgorithm {
 
     public:
 
-        GeneticAlgorithm() = delete;
+        GeneticAlgorithm() = default;
         GeneticAlgorithm(KnapsackProblem& problem, 
                          int iterations, 
                          int populationSize, 

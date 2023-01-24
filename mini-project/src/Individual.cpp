@@ -11,7 +11,7 @@ Individual::Individual() {
 
     recentlyMutated = true;
 
-    generator = std::default_random_engine(rand_device());
+    generator = std::mt19937(rand_device());
     chance = std::uniform_real_distribution<double>(0.0, 1.0);
 }
 
@@ -22,7 +22,7 @@ Individual::Individual(int length) : Individual() {
         geneticCode.push_back(chance(generator) < 0.5);
 }
 
-Individual::Individual(const std::vector<bool>& geneticCode) : Individual() {
+Individual::Individual(std::vector<bool>&& geneticCode) : Individual() {
 
     length = geneticCode.size();
     this->geneticCode = geneticCode;
@@ -76,7 +76,7 @@ std::pair<Individual, Individual> Individual::crossover(const Individual& other)
             child2[i] = geneticCode[i];
         }
     }
-    return std::make_pair(Individual(child1), Individual(child2));
+    return std::make_pair(Individual(std::move(child1)), Individual(std::move(child2)));
 }
 
 void Individual::mutate(double mutationChance) {
