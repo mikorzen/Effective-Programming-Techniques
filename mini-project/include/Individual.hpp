@@ -24,7 +24,7 @@ class Individual {
 
         Individual();
         Individual(int length);
-        Individual(std::vector<bool>& geneticCode);
+        Individual(const std::vector<bool>& geneticCode);
         Individual(const Individual& other);
         Individual& operator=(const Individual& other);
 

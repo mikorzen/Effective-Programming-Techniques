@@ -22,7 +22,7 @@ Individual::Individual(int length) : Individual() {
         geneticCode.push_back(chance(generator) < 0.5);
 }
 
-Individual::Individual(std::vector<bool>& geneticCode) : Individual() {
+Individual::Individual(const std::vector<bool>& geneticCode) : Individual() {
 
     length = geneticCode.size();
     this->geneticCode = geneticCode;
