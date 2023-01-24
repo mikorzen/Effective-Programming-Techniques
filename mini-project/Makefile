@@ -15,7 +15,7 @@ run: clean all
 	./$(BIN)/$(EXECUTABLE)
 
 $(BIN)/$(EXECUTABLE): $(SOURCE)/*.cpp 
-	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) $^ -o $@ -fno-elide-constructors $(LIBRARIES)
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) $^ -o $@ $(LIBRARIES)
 
 clean:
 	-rm $(BIN)/*
